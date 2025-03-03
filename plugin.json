@@ -1,0 +1,6 @@
+{
+  "name": "Book Reader",
+  "version": "0.0.1",
+  "description": "book reader",
+  "module": "./module.mjs"
+}
