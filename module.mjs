@@ -7,9 +7,6 @@ export default function (accessor) {
   accessor.listen('plugin.load', async () => {
     const dir = dirname(import.meta.url)
 
-    console.log(dir)
-    console.log(join(dir, 'views/setup.html'))
-
     // ビューセットアップ
     const nav = new Navigator()
     nav.register([
