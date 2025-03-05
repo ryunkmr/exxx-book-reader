@@ -21,7 +21,7 @@ export default function (accessor) {
     conf.init()
 
     // 保存先
-    if (!conf.store.has(ConfigKeys.savePath)) {
+    if (!conf.has(ConfigKeys.savePath)) {
       // セットアップ画面表示
       nav.forward('setup')
     }
