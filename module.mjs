@@ -23,7 +23,14 @@ export default function (accessor) {
     // 保存先
     if (!conf.has(ConfigKeys.savePath)) {
       // セットアップ画面表示
-      await nav.forward('setup')
+      for (let i = 0; i < 2; i++) {
+        try {
+          await nav.forward('setup')
+          i = 2
+        } catch (error) {
+          console.error(error)
+        }
+      }
     }
   })
 }
