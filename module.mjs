@@ -2,6 +2,8 @@ import { ExxxConfig, Navigator } from '#exxx'
 import { ConfigKeys } from './modules/constants.mjs'
 import { join, dirname } from 'path'
 
+const dir = dirname(import.meta.url)
+
 // ビューセットアップ
 const nav = new Navigator()
 nav.register([
@@ -22,10 +24,6 @@ async function showSetup(retry) {
 export default function (accessor) {
   // プラグインロード時
   accessor.listen('plugin.load', async () => {
-    const dir = dirname(import.meta.url)
-
-    
-
     // 設定のセットアップ
 
     // 必要な設定がされているか確認
