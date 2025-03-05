@@ -4,7 +4,7 @@ import { join, dirname } from 'path'
 
 export default function (accessor) {
   // プラグインロード時
-  accessor.listen('plugin.load', () => {
+  accessor.listen('plugin.load', async () => {
     const dir = dirname(import.meta.url)
 
     console.log(dir)
@@ -26,7 +26,7 @@ export default function (accessor) {
     // 保存先
     if (!conf.has(ConfigKeys.savePath)) {
       // セットアップ画面表示
-      nav.forward('setup')
+      await nav.forward('setup')
     }
   })
 }
