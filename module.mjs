@@ -28,7 +28,7 @@ export default function (accessor) {
     // 設定のセットアップ
 
     // 必要な設定がされているか確認
-    initConfig()
+    initConfig(accessor.json.id)
 
     const conf = config()
 
