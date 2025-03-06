@@ -2,6 +2,7 @@ import { Navigator } from '#exxx'
 import { ConfigKeys } from './modules/constants.mjs'
 import { join, dirname } from 'path'
 import { config, initConfig } from './modules/config.mjs'
+import { mkdir } from 'fs/promises'
 
 const dir = dirname(import.meta.url)
 
@@ -40,15 +41,15 @@ export default function (accessor) {
   })
 
   // 設定セットアップイベント
-  accessor.listen('ryunkmr@exxx-book-reader:config:submit', async config => {
+  accessor.listen('ryunkmr@exxx-book-reader:config:submit', async value => {
     try {
       const conf = config()
 
       // 保存先パスの指定チェック
-      if (config && config.savePath) {
+      if (config && value.savePath) {
         // 設定に反映&ディレクトリ作成
-        conf.set(ConfigKeys.savePath, config.savePath)
-        await mkdir(config.savePath, { recursive: true })
+        conf.set(ConfigKeys.savePath, value.savePath)
+        await mkdir(value.savePath, { recursive: true })
 
         return {
           success: true
