@@ -1,7 +1,7 @@
 import { Navigator } from '#exxx'
 import { ConfigKeys } from './modules/constants.mjs'
 import { join, dirname } from 'path'
-import { bookReaderConfig } from './modules/config.mjs'
+import { config, initConfig } from './modules/config.mjs'
 
 const dir = dirname(import.meta.url)
 
@@ -28,9 +28,12 @@ export default function (accessor) {
     // 設定のセットアップ
 
     // 必要な設定がされているか確認
+    initConfig()
+
+    const conf = config()
 
     // 保存先
-    if (!bookReaderConfig.has(ConfigKeys.savePath)) {
+    if (!conf.has(ConfigKeys.savePath)) {
       // セットアップ画面表示
       showSetup(1)
     }
@@ -39,10 +42,12 @@ export default function (accessor) {
   // 設定セットアップイベント
   accessor.listen('ryunkmr@exxx-book-reader:config:submit', async config => {
     try {
+      const conf = config()
+
       // 保存先パスの指定チェック
       if (config && config.savePath) {
         // 設定に反映&ディレクトリ作成
-        bookReaderConfig.set(ConfigKeys.savePath, config.savePath)
+        conf.set(ConfigKeys.savePath, config.savePath)
         await mkdir(config.savePath, { recursive: true })
 
         return {
