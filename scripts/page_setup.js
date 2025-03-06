@@ -8,7 +8,7 @@ async function submitSetup() {
     savePath
   }
 
-  const result = await window.api.invoke('ryunkmr@exxx-book-reader.config.submit', config)
+  const result = await window.api.invokeTarget('ryunkmr@exxx-book-reader', 'config.submit', config)
   if (result[0].success) {
     window.api.navigate('index')
   } else {

@@ -47,7 +47,7 @@ export default function (accessor) {
   })
 
   // 設定セットアップイベント
-  accessor.listen('ryunkmr@exxx-book-reader.config.submit', async value => {
+  accessor.listen('config.submit', async value => {
     try {
       const conf = config()
 
