@@ -40,8 +40,14 @@ export default function (accessor) {
     }
   })
 
+  // プラグインアンインストール時
+  accessor.listen('plugin.unload', async () => {
+    const conf = config()
+    await conf.deleteConfigFile()
+  })
+
   // 設定セットアップイベント
-  accessor.listen('ryunkmr@exxx-book-reader:config:submit', async value => {
+  accessor.listen('ryunkmr@exxx-book-reader.config.submit', async value => {
     try {
       const conf = config()
 
