@@ -8,10 +8,14 @@ async function submitSetup() {
     savePath
   }
 
-  const result = await window.api.pages.setup.submit(config)
-  if (result) {
+  const result = await window.api.pages.setup.invoke('ryunkmr@exxx-book-reader:config:submit', config)
+  if (result[0].success) {
     window.location = './index.html'
   } else {
-    console.log("設定失敗")
+    toast({
+      color: 'danger',
+      content: result[0].message,
+      close: true
+    })
   }
 }
